@@ -124,7 +124,7 @@ func (m GelfMessage) getExtraFields() (json.RawMessage, error) {
 		"_created":        m.Container.Created,
 	}
 	for name, label := range m.Container.Config.Labels {
-		if strings.ToLower(name[0:5]) == "gelf_" {
+		if strings.HasPrefix(strings.ToLower(name), "gelf_") == true {
 			extra[name[4:]] = label
 		}
 	}
